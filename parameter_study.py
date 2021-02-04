@@ -1,7 +1,13 @@
+from IPython import get_ipython; get_ipython().magic('reset -sf')
+from importlib import reload  
+import load
+load = reload(load)
+
 import numpy as np
 import pylab as plt
 import math
 import itasca as it
+it.command("python-reset-state false")
 from scipy.constants import inch
 
 from load import blast, apply_gas_force, pressure
@@ -9,8 +15,8 @@ from load import blast, apply_gas_force, pressure
 ct = 3e-4 # characteristic time
 cp = 1e6  # characteristic pressure
 
-material = "SS_ParallelBonded-mat.p3sav"
-material = "SS_ParallelBonded3D-mat.p3sav"
+material = "PFCmat-mat.p3sav"
+#material = "SS_ParallelBonded3D-mat.p3sav"
 
 hole_radius = 1.5*inch/2.0
 
@@ -26,7 +32,7 @@ for pmult in [0.75, 1.0, 1.25, 1.5, 2.0]:
         blast.setup(material, rise_time, peak_pressure,
                     decay, hole_radius, c, prefix)
         run_time = rise_time + 1.5e-3
-        print "running case {} for {}".format(c, run_time)
+        print ("running case {} for {}".format(c, run_time))
         blast.run(run_time)
         blast.save()
         c += 1

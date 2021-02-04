@@ -8,15 +8,13 @@
 ;                      }
 ;
 ;=============================================================================
-set logfile myMatGen.p3log
-set log     on truncate
-set echo    on
 
 ;#######################################################
-new
-call ..\fistSrc\ft.fis suppress
-call mvParams.p3dat    suppress
-call mpParams.p3dat    suppress
+model new
+MODEL LARGE-STRAIN on
+call "..\fistSrc\ft.fis" 
+call "mvParams.p3dat"    
+call "mpParams.p3dat"    
 
 @mvMake
 @mpMake( 0, [false] )
@@ -25,7 +23,5 @@ call mpParams.p3dat    suppress
 @mpListMicroStrucProps
 ;#######################################################
 
-gui project save
-set log off
 return
 ;EOF: myMatGen.p3dvr

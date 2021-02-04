@@ -1,5 +1,5 @@
 import itasca as it
-import itasca.ballarray as ba
+from itasca import ballarray as ba
 from vec import vec
 import numpy as np
 import pylab as plt
@@ -11,15 +11,16 @@ class cube_blast(object):
     def setup(self, material, rise_time, peak_pressure,
                  pressure_decay, hole_radius,case,prefix):
         it.command("""
-        new
-        res {savefile}
+        model new
+        MODEL LARGE-STRAIN on
+        model res '{savefile}'
         ball attr damp 0
         ball ini disp 0
-        ball delete range cyl end1 0 0 -100 end2 0 0 100 rad {hole_radius}
+        ball delete range cyl end-1 0 0 -100 end-2 0 0 100 rad {hole_radius}
         contact prop dp_nratio 0.1
         contact prop dp_sratio 0.1
-        ball prop dp_nratio 0.1
-        ball prop dp_sratio 0.1
+        ball prop "dp_nratio" 0.1
+        ball prop "dp_sratio" 0.1
         """.format(savefile=material,hole_radius=hole_radius))
 
         self.case = case
@@ -49,7 +50,7 @@ class cube_blast(object):
         it.command("solve age {}".format(it.mech_age() + deltat))
 
     def save(self):
-        it.command("save {}blast{}.p3sav".format(self.prefix, self.case))
+        it.command("save '{}blast{}.p3sav'".format(self.prefix, self.case))
         np.savetxt("{}blast{}.txt".format(self.prefix, self.case), self.data)
 
     def show(self):
@@ -96,7 +97,7 @@ def show_cracks():
         print >> output, "{} {} {} {} EXTRA 1 0".format(i+1,*pos)
     output.close()
     it.command("geom delete")
-    it.command("geom import tmp.geom format geometry")
+    it.command("geom import 'tmp.geom' format geometry")
     return len(cracks)
 
 # singleton
