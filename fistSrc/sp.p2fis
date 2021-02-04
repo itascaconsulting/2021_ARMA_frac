@@ -1,0 +1,23 @@
+;fname: sp.p2fis
+;
+; Specimen-based lab tests support functions for carving a specimen out of a
+; bonded assembly, and then performing tension and compression tests on it.
+; The specimen can be carved into either a cuboid or cylindrical shape.
+;
+; This capability is provided only in 3D. The functions herein are stubs
+; which can be called by PFC2D from tt.fis and ct.fis.
+;==================================================================================================
+;------------------------------------------------
+fish define _spCheckParams
+end
+;------------------------------------------------
+fish define spListProps
+end
+;------------------------------------------------
+fish define spCarve
+end
+;------------------------------------------------
+fish define sp_ttStressStrainInit
+end
+program return
+;EOF: sp.p2fis

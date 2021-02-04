@@ -1,0 +1,88 @@
+;fname: udm_hl.p3fis
+;
+; User-Defined Material redefinitions for the hill material.
+;
+;==================================================================================================
+fish define udm_checkParams
+  hlm_checkParams
+end
+;------------------------------------------------
+fish define udm_listProps
+  hlm_listProps
+end
+;------------------------------------------------
+fish define udm_computeMicroStrucProps
+  hlm_computeMicroStrucProps
+end
+;------------------------------------------------
+fish define udm_listMicroStrucProps
+  hlm_listMicroStrucProps
+end
+;------------------------------------------------
+fish define ft_setMatBehavior( cSet, prox, fric )
+; Redefined function to set material behavior for existing and future grain-grain contacts
+; to be that of the hill material.
+;
+; PARAMS (see virtual function ft_setMatBehavior)
+;
+; IN (material properties, one of which is friction coefficient):
+;   hlm_youngMod  : Young's modulus of grains
+;   hlm_poisRatio : Poisson's ratio of grains
+;   hlm_fricCoef  : friction coefficient [float]
+;   hlm_dampCon   : damping constant
+;   hlm_suction   : suction [stress, float]
+;
+  if      cSet == 'existing' then
+  else if cSet == 'future'   then
+  else
+    system.error = 'ft_setMatBehavior cannot handle specified value for parameter cSet.'
+  end_if
+  ;
+  local theFric
+  if fric == -99.0 then
+    theFric = hlm_fricCoef
+  else
+    theFric = fric
+  end_if
+  ;
+  local myTypeStr = array.create(3)
+  local tidx
+  local tidxMax = 3
+  myTypeStr(1) = 'ball-ball'
+  myTypeStr(2) = 'ball-pebble'
+  myTypeStr(3) = 'pebble-pebble'
+  ;
+  if cSet == 'existing' then
+    loop for ( tidx = 1, tidx <= tidxMax, tidx = tidx + 1 )
+      command
+        contact property fric_coef [theFric] damp_con [hlm_dampCon] suction [hlm_suction] ...
+                         range contact type [myTypeStr(tidx)]
+      end_command
+    end_loop
+    if ball.num > 0 then
+      command
+        ball  property 'young_mod' [hlm_youngMod] 'pois_ratio' [hlm_poisRatio]
+      end_command
+    end_if
+    if clump.num > 0 then
+      command
+        clump property 'young_mod' [hlm_youngMod] 'pois_ratio' [hlm_poisRatio]
+      end_command
+    end_if
+  else ; cSet == 'future'
+    loop for ( tidx = 1, tidx <= tidxMax, tidx = tidx + 1 )
+      command
+        contact cmat default type [myTypeStr(tidx)] ...
+                     model hill ...
+                     property fric_coef [theFric] damp_con [hlm_dampCon] suction [hlm_suction]
+        contact cmat proximity [prox]
+      end_command
+    end_loop
+    command
+      model clean ; Create contacts between all grains within [prox] of one another.
+    end_command
+  end_if
+end
+
+program return
+;EOF: udm_hl.p3fis

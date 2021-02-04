@@ -1,0 +1,288 @@
+;fname: sp.p3fis
+;
+; Specimen-based lab tests support functions for carving a specimen out of a
+; bonded assembly, and then performing tension and compression tests on it.
+; The specimen can be carved into either a cuboid or cylindrical shape.
+;
+; The tension test defines a layer of balls on the axial faces, and moves
+; them apart, while monitoring axial stress and strain via measurement logic,
+; and unbal. force on bdry balls (for stress) and 2 guage balls (for strain).
+;
+; The compression test creates walls to surround the specimen, and then uses
+; the axial walls as platens, and the side walls to provide confinement via
+; a servo mechanism.
+;==================================================================================================
+;************************************************
+; Test Parameters:
+;
+;   Specimen-based group:
+;     sp_carve     : carve flag (0: do not carve, 1: carve)
+;     sp_testType  : {0,1} = {tensile, compression} test
+;     sp_shape     : specimen-shape code {0,1} = {rectangular cuboid, cylinder}
+;     sp_{H,W,D}   : {Height, Width, Depth} =
+;                      sp_shape = 0: {z,y,x}-directions
+;                      sp_shape = 1: cylinder {height, diameter, NA}, sp_D := sp_W
+;                    Height is axial direction
+;     For compression test:
+;       sp_wemod     : wall effective modulus
+;       sp_expandFac : expansion factor for walls
+;
+;     Hidden parameters:
+;       sp_inset{L,D}Fac : inset factors of measurement regions (see ft.fis)
+;       For compression test:
+;         _mvCylRes   : cylinder resolution (see ft.fis)
+;         _spCarveFac : carved size reduced by _spCarveFac times average grain diameter
+;                       For cylinder, cylinder radius additionally reduced by the max inset
+;                       distance of each polygon
+;       For tensile test:
+;         _spSSareaZ : cross-sectional area of z-face
+;         _spSSnbdry{Top, Bot} : number of balls in top/bottom boundary
+;         _spSSbdry{Top, Bot}  : array of balls in top/bottom boundary
+;         _spSS_b{Top,Bot} : top/bottom ball used to compute axial strain
+;         _spSS_L0         : initial axial length
+;------------------------------------------------
+fish define _spCheckParams
+  ; ***** Specimen group:
+  if (sp_testType < 0 ) | (sp_testType > 1) then
+    system.error = 'sp_testType must be in [0,1].'
+  end_if
+  if (sp_shape < 0 ) | (sp_shape > 1) then
+    system.error = 'sp_shape must be in [0,1].'
+  end_if
+  if sp_H == 0 then
+    system.error = 'sp_H must be specified.'
+  else
+    if sp_H < 0.0 then
+      system.error = 'sp_H must be positive.'
+    end_if
+  end_if
+  if sp_W == 0 then
+    system.error = 'sp_W must be specified.'
+  else
+    if sp_W < 0.0 then
+      system.error = 'sp_W must be positive.'
+    end_if
+  end_if
+  if sp_shape == 0 then
+    if sp_D == 0 then
+      system.error = 'sp_D must be specified.'
+    else
+      if sp_D < 0.0 then
+        system.error = 'sp_D must be positive.'
+      end_if
+    end_if
+  else ; sp_shape == 1
+    sp_D = sp_W  ; sp_W defines cylinder diameter, but sp_D is used in making measure regions
+  end_if
+  if sp_insetLFac == 0 then ; default
+    sp_insetLFac = 0.8
+  else
+    if (sp_insetLFac <= 0.0) | (sp_insetLFac > 1.0) then
+      system.error = 'sp_insetLFac must be in range (0, 1].'
+    end_if
+  end_if
+  if sp_insetDFac == 0 then ; default
+    sp_insetDFac = 0.8
+  else
+    if (sp_insetDFac <= 0.0) | (sp_insetDFac > 1.0) then
+      system.error = 'sp_insetDFac must be in range (0, 1].'
+    end_if
+  end_if
+  if sp_testType == 1 then
+    if sp_wemod == 0 then ; default
+      system.error = 'sp_wemod must be specified.'
+    else
+      if sp_wemod <= 0.0 then
+        system.error = 'sp_wemod must be greater than zero.'
+      end_if
+    end_if
+    if sp_expandFac == 0 then ; default
+      sp_expandFac = 1.2
+    else
+      if sp_expandFac < 1.0 then
+        system.error = 'sp_expandFac must be greater than or equal to one.'
+      end_if
+    end_if
+    if sp_shape == 1 then
+      if _mvCylRes == 0 then ; default
+        _mvCylRes = 0.55  ; 12-sided polygon for side of cylinder
+                          ; If different value is chosen, must modify the inset computation
+                          ; of {0.5*sp_W*0.0341} in spCarve.
+      end_if
+    end_if
+    if _spCarveFac == 0 then ;default
+      _spCarveFac = 0.15  ; small enough to give reasonable amount of overlapped grains
+    end_if
+  end_if
+  ;
+  ; Set parameters used by _mvMakeRegions, _mvMakeWalls and other things.
+  mv_type = 0
+  mv_shape = sp_shape
+  mv_expandFac = sp_expandFac
+  mv_H = sp_H
+  mv_W = sp_W
+  mv_D = sp_D
+  mv_insetLFac = sp_insetLFac
+  mv_insetDFac = sp_insetDFac
+end
+;------------------------------------------------
+fish define spListProps
+  io.out('     Specimen-based group:')
+  io.out('       sp_testType (0: tensile test, 1: compression test): '+string(sp_testType))
+  io.out('       sp_shape (0: cuboid, 1: cylinder): '+string(sp_shape))
+  io.out('       sp_H: '+string(sp_H))
+  io.out('       sp_W: '+string(sp_W))
+  if sp_shape == 0 then
+    io.out('       sp_D: '+string(sp_D))
+  end_if
+  io.out('       sp_insetLFac: '+string(sp_insetLFac))
+  io.out('       sp_insetDFac: '+string(sp_insetDFac))
+  if sp_testType == 1 then
+    io.out('       sp_wemod: '+string(sp_wemod))
+    io.out('       sp_expandFac: '+string(sp_expandFac))
+    io.out('       _mvCylRes: '+string(_mvCylRes))
+    io.out('       _spCarveFac: '+string(_spCarveFac))
+  end_if
+end
+;------------------------------------------------
+fish define spCarve
+; Carve into specified shape and establish wall- and measurement-based quantities.
+;
+  local Davg
+  if sp_shape == 0 then
+    local xHalfWid = 0.5*sp_D
+    local yHalfWid = 0.5*sp_W
+    local zHalfWid = 0.5*sp_H
+    if sp_testType == 1 then
+      Davg = spDavg
+      xHalfWid = xHalfWid - _spCarveFac*Davg
+      yHalfWid = yHalfWid - _spCarveFac*Davg
+      zHalfWid = zHalfWid - _spCarveFac*Davg
+    end_if
+    command
+      ball delete range position-x [-xHalfWid] [xHalfWid] not
+      ball delete range position-y [-yHalfWid] [yHalfWid] not
+      ball delete range position-z [-zHalfWid] [zHalfWid] not
+    end_command
+  else ; sp_shape == 1
+    local cylDelRad = 0.5*sp_W
+    local cylDelHt  = 0.5*sp_H
+    if sp_testType == 1 then
+      Davg = spDavg
+      cylDelRad = cylDelRad - (0.5*sp_W*0.0341 + _spCarveFac*Davg) ; 12-sided polygon
+      cylDelHt  = cylDelHt  - _spCarveFac*Davg
+    end_if
+    command
+      ball delete range cylinder end-1 [vector(0.0, 0.0, -cylDelHt)] ...
+                                 end-2 [vector(0.0, 0.0,  cylDelHt)] ...
+                                 radius [cylDelRad] not
+    end_command
+  end_if
+  if sp_testType == 1 then
+    ft_setGrainWallBehavior( 'future',   0.0, sp_wemod, 0.0, 0.0, 'linear' )
+    _mvMakeWalls
+    command
+      model clean
+    end_command
+    ft_SmoothGrainWallInterface
+    mv_wInit
+  end_if
+  _mvMakeMeasRegions
+  mv_mInit
+end
+;------------------------------------------------
+fish define spDavg
+  local Davg
+  local Dcnt = 0, Dsum = 0.0
+  loop foreach local bp ball.list
+    Dcnt = Dcnt + 1
+    Dsum = Dsum + 2.0*ball.radius(bp)
+  end_loop
+  if Dcnt > 0 then
+    Davg = Dsum / Dcnt
+  else
+    Davg = 0.0
+  end_if
+  spDavg = Davg
+end
+;------------------------------------------------
+fish define sp_ttStressStrainInit
+; Initialize stress and strain monitoring for the tensile test.
+; OUT: _spSSareaZ
+;      _spSSnbdry{Top, Bot}
+;      _spSSbdry{Top, Bot}
+;      _spSS_b{Top,Bot}
+;      _spSS_L0
+;
+  if sp_shape == 0 then
+    _spSSareaZ = sp_W * sp_D
+  else
+    _spSSareaZ = math.pi * sp_D * sp_D * 0.25
+  end_if
+  ;
+  _spSSnbdryTop = _spSSnbdry( true  )
+  _spSSnbdryBot = _spSSnbdry( false )
+  _spSSbdryTop = array.create(_spSSnbdryTop)
+  _spSSbdryBot = array.create(_spSSnbdryBot)
+  _spSSarraysFill
+  ;
+  _spSS_bTop = ball.near( vector(0.0, 0.0, [ 0.5*sp_H]) )
+  _spSS_bBot = ball.near( vector(0.0, 0.0, [-0.5*sp_H]) )
+  _spSS_L0 = ball.pos.z( _spSS_bTop ) - ball.pos.z( _spSS_bBot )
+end
+;------------------------------------------------
+fish define _spSSnbdry( top )
+  local bp, cnt = 0
+  if top == true then
+    loop foreach bp ball.list
+      if ball.group(bp, 1) == 'ttGripTop' then
+        cnt = cnt + 1
+      end_if
+    end_loop
+  else ; top == false
+    loop foreach bp ball.list
+      if ball.group(bp, 1) == 'ttGripBottom' then
+        cnt = cnt + 1
+      end_if
+    end_loop
+  end_if
+  _spSSnbdry = cnt
+end
+;------------------------------------------------
+fish define _spSSarraysFill  ;{o: _spSSbdry{Top,Bot}}
+  local bp, idxTop = 0, idxBot = 0
+  loop foreach bp ball.list
+    if ball.group(bp, 1) == 'ttGripTop' then
+      idxTop = idxTop + 1
+      _spSSbdryTop(idxTop) = bp
+    end_if
+    if ball.group(bp, 1) == 'ttGripBottom' then
+      idxBot = idxBot + 1
+      _spSSbdryBot(idxBot) = bp
+    end_if
+  end_loop
+end
+;------------------------------------------------
+fish define sp_ssa
+; Return specimen-based axial stress = axial force on bdry balls / initial xc-area.
+;
+  local FsumTop = 0.0, FsumBot = 0.0
+  local idx
+  loop for ( idx = 1, idx <= _spSSnbdryTop, idx = idx + 1 )
+    FsumTop = FsumTop + ball.force.unbal.z( _spSSbdryTop(idx) )
+  end_loop
+  loop for ( idx = 1, idx <= _spSSnbdryBot, idx = idx + 1 )
+    FsumBot = FsumBot + ball.force.unbal.z( _spSSbdryBot(idx) )
+  end_loop
+  sp_ssa = 0.5*(FsumBot - FsumTop) / _spSSareaZ
+end
+;------------------------------------------------
+fish define sp_sea
+; Return specimen-based axial strain wrt two guage balls at top and bottom.
+; IN: _spSS_b{Top,Bot}, _spSS_L0
+;
+  local L = ball.pos.z( _spSS_bTop ) - ball.pos.z( _spSS_bBot )
+  sp_sea = (L - _spSS_L0) / _spSS_L0
+end
+program return
+;EOF: sp.p3fis
