@@ -1,3 +1,1846 @@
+def inline
+global  _GSPMet
+global  _GSaccumSFac
+global  _GSapplyAlpha
+global  _GSgetAlpha
+global  _GSgetPebble
+global  _GSgetRpo
+global  _GSgetRpoBP
+global  _GSiterN
+global  _Lmax
+global  _Lmin
+global  _Vg
+global  _aASTPPdone
+global  _aASdone
+global  _aASeincr
+global  _aASmea0
+global  _aASwea0
+global  _aRSdone
+global  _aRSeincr
+global  _aRSwer0
+global  _aRSwex0
+global  _bVol
+global  _cVol
+global  _ckAddCrack
+global  _ckBallBall
+global  _ckBondBreak
+global  _ckCodeDependencies
+global  _ckCountCrack
+global  _ckDFN
+global  _ckDeformabilityRadius
+global  _ckDiam
+global  _ckGeom
+global  _ckGeomContact
+global  _ckGeomNoContact
+global  _ckName
+global  _ckNameFailMode
+global  _ckNameType
+global  _ckOn
+global  _ckResetCrackData
+global  _ckSize
+global  _ckUpdate
+global  _ckUpdateCnt
+global  _clDiam
+global  _ctApplyAxialPressure
+global  _ctApplyAxialStrain
+global  _ctApplyRadialStrain
+global  _ctCheckParams
+global  _ctEndStage
+global  _ctExpandFac
+global  _ctLoadTermSteps
+global  _ctMatTestStr
+global  _ctPerformStage
+global  _ctTestStr
+global  _ctUpdate_wsdMax
+global  _d
+global  _dcApplyAxialStrain
+global  _dcCheckParams
+global  _dcEndStage
+global  _dcLoadTermSteps
+global  _dcMakeWalls
+global  _dcMatTestStr
+global  _dcPerformStage
+global  _dcSetWallVel
+global  _dcTestStr
+global  _dcUpdate_wfaMax
+global  _denom
+global  _dsc
+global  _eqPMet
+global  _eqPTol
+global  _eqPreps
+global  _eqPxeps
+global  _eqPyeps
+global  _eqPzeps
+global  _frac
+global  _ftAng2D
+global  _ftAngMin
+global  _ftCheckZeroTol
+global  _ftCodeDependencies
+global  _ftConstants
+global  _ftInit
+global  _ftModulus
+global  _ftOneSixth
+global  _ftOneThird
+global  _gc
+global  _gsdBounds
+global  _gsdCalled
+global  _gsdDmax
+global  _gsdDmin
+global  _gsdMakeGSD
+global  _gsdMakeGSDretained
+global  _iHatMax
+global  _mFac
+global  _mPos
+global  _mRad
+global  _minDim
+global  _mpAssignCB
+global  _mpAssignCBbond
+global  _mpAssignFJ
+global  _mpAssignFJProps
+global  _mpAssignFJprops
+global  _mpAssignPB
+global  _mpAssignPBbond
+global  _mpAssignPBprops
+global  _mpAssignSB
+global  _mpAssignSBbond
+global  _mpAssignSBprops
+global  _mpBallDistribute
+global  _mpCheckAllParams
+global  _mpCheckCBParams
+global  _mpCheckCommonParams
+global  _mpCheckFJParams
+global  _mpCheckLinParams
+global  _mpCheckPBParams
+global  _mpCheckPackingParams
+global  _mpCheckSBParams
+global  _mpClumpDistribute
+global  _mpCylRange
+global  _mpCylRangeOUT
+global  _mpCylRangeSup
+global  _mpDeleteGrainsOutOfVessel
+global  _mpFJrmulReduce
+global  _mpFJrmulReduceAll
+global  _mpFJrmulRemoveOverlap
+global  _mpFJsetMicroStruc
+global  _mpFinalizationPhase
+global  _mpMSisNearZero
+global  _mpMakeGrains
+global  _mpMaxORisSmall
+global  _mpPackBdryContract
+global  _mpPackGrainScale
+global  _mpPackIsoState
+global  _mpPackingPhase
+global  _mpSetEffLinBehavior
+global  _mpSetGrainDamp
+global  _mpSetGrainDensity
+global  _mpSphRange
+global  _mpSphRangeOUT
+global  _mpSphRangeSup
+global  _msArc
+global  _msBoxDefined
+global  _msBoxGeomSetUpdate
+global  _msBoxGeomSetUpdated
+global  _msBoxMarkGrains
+global  _msCB_Make
+global  _msCKAvgSize
+global  _msCK_Make
+global  _msCKdrawMe
+global  _msCKthick
+global  _msCircle2D
+global  _msClear
+global  _msCleared
+global  _msCylinder
+global  _msDisk
+global  _msEtaDir
+global  _msFG_Make
+global  _msFGcoreRad
+global  _msFGdrawCore
+global  _msFGdrawFacedGrain
+global  _msFGdrawSkirtedFaces
+global  _msFGdrawSkirtedFaces2D
+global  _msFGdrawSkirtedFaces3D
+global  _msFJiDrawCoordSys
+global  _msFJiDrawDisc
+global  _msFJiDrawDisc2D
+global  _msFJiDrawDisc3D
+global  _msFJiDrawIntfc
+global  _msFJi_Make
+global  _msGN_Make
+global  _msGrainPieceInBox
+global  _msGrainPiecePt
+global  _msLineA
+global  _msLineB
+global  _msLineThick2D
+global  _msLocalS
+global  _msNdir
+global  _msOn
+global  _msPBc_Make
+global  _msPBi_Make
+global  _msPoly3
+global  _msPoly4
+global  _msSBiGrpName
+global  _msSBi_Make
+global  _msSdir
+global  _msSkirt
+global  _msSphere
+global  _msTdir
+global  _msUpdate
+global  _msUpdateCnt
+global  _msXiDir
+global  _msXidir
+global  _mvCheckParams
+global  _mvCylRes
+global  _mvMakeMeasRegions
+global  _mvMakeWalls
+global  _mvMpAxLen
+global  _mvMpDiam
+global  _mvMpLength
+global  _mvMpRadLenX
+global  _mvMpRadLenY
+global  _mvSBondBreak
+global  _mvSbondBreak
+global  _mvSgainPer
+global  _mvShalt
+global  _mvSignore
+global  _mvSnumBreak
+global  _mvSphRes
+global  _mvSupdateSR
+global  _mvVolume
+global  _mv_wAreas
+global  _mvsActive
+global  _mvsCheckMeasWallOverlap
+global  _mvsEnforceVlimit
+global  _mvsGain
+global  _mvsGainCnt
+global  _mvsGainCompute
+global  _mvsGainStored
+global  _mvsRadForce
+global  _mvsRadVel
+global  _mvsSetRadVel
+global  _mvsUpdateRadDiam
+global  _nc
+global  _pkORcnt
+global  _pkORmaxLimit
+global  _pkORupdateRate
+global  _pkSavPreFinal
+global  _rhoG
+global  _spCarveFac
+global  _spCheckParams
+global  _spSS_L0
+global  _spSS_bBot
+global  _spSS_bTop
+global  _spSSareaZ
+global  _spSSarraysFill
+global  _spSSbdryBot
+global  _spSSbdryTop
+global  _spSSnbdry
+global  _spSSnbdryBot
+global  _spSSnbdryTop
+global  _str
+global  _sumVg
+global  _ttApplyAxialStrain
+global  _ttCheckParams
+global  _ttEndStage
+global  _ttLoadTermSteps
+global  _ttMatTestStr
+global  _ttPerformStage
+global  _ttSetGripVel
+global  _ttTestStr
+global  _ttUpdate_msaMax
+global  _ttUpdate_tt_bea
+global  _val
+global  _wAr
+global  _wAreaMode
+global  _wAx
+global  _wAy
+global  _wAz
+global  _wdHt
+global  _wdr
+global  _wdr0
+global  _wdx
+global  _wdx0
+global  _wdy
+global  _wdy0
+global  _wdz
+global  _wdz0
+global  _xc
+global  _xf
+global  a
+global  a1
+global  a2
+global  above
+global  abs
+global  achieved
+global  active
+global  add
+global  af
+global  al1
+global  al2
+global  aligned
+global  all
+global  alpha
+global  alpha1
+global  alpha2
+global  always
+global  an
+global  and
+global  angOut
+global  angle
+global  application
+global  aratio
+global  are
+global  args
+global  argument
+global  around
+global  as
+global  assemble
+global  assembled
+global  at
+global  atan2
+global  attribute
+global  available
+global  average
+global  avg
+global  avgSize
+global  axial
+global  axis
+global  azimuth
+global  b1
+global  b2
+global  bLinearBased
+global  bPtr
+global  ball
+global  balls
+global  base
+global  based
+global  bcnMark
+global  bcnMeasure
+global  bcn_numGrains
+global  be
+global  been
+global  before
+global  begin
+global  being
+global  bending
+global  beta
+global  bin
+global  bins
+global  bond
+global  bond_break
+global  bonded
+global  bonds
+global  boundary
+global  box
+global  bp
+global  bp_other
+global  break
+global  breakage
+global  breaks
+global  brick
+global  brk
+global  brokeShear
+global  brokeTension
+global  build
+global  bulk
+global  but
+global  by
+global  c1
+global  c2
+global  cGrainGrain
+global  cGrainWall
+global  cList
+global  cNum
+global  cPos
+global  cSet
+global  cType
+global  cVec1
+global  cVec2
+global  call
+global  callback
+global  called
+global  calling
+global  calm
+global  calming
+global  cannot
+global  cap
+global  cb_state
+global  cb_strength
+global  cbm_emod
+global  cbm_fric
+global  cbm_igap
+global  cbm_krat
+global  cbm_shears_m
+global  cbm_shears_sd
+global  cbm_tens_m
+global  cbm_tens_sd
+global  cell
+global  cement
+global  center
+global  centers
+global  check
+global  circumferential
+global  ckDFN
+global  ckFilter
+global  ckFilterGap
+global  ckFilterOpen
+global  ckForceUpdate
+global  ckGetDFN
+global  ckGetSize
+global  ckInit
+global  ckInited
+global  ckListData
+global  ckOff
+global  ckOn
+global  ckType
+global  ckUpdateRate
+global  ck_nAll
+global  ck_nCBs
+global  ck_nCBt
+global  ck_nFJs
+global  ck_nFJt
+global  ck_nFiltered
+global  ck_nOrphans
+global  ck_nPBs
+global  ck_nPBt
+global  ck_nSBs
+global  ck_nSBt
+global  ck_nSJs
+global  ck_nSJt
+global  cl
+global  clean
+global  clear
+global  close
+global  cloud
+global  clump
+global  clumps
+global  cmName
+global  cm_Dlo
+global  cm_Dmult
+global  cm_Dup
+global  cm_Vfrac
+global  cm_ctName
+global  cm_densityCode
+global  cm_densityVal
+global  cm_localDampFac
+global  cm_matName
+global  cm_matNameSAV
+global  cm_matType
+global  cm_modName
+global  cm_nSD
+global  cm_shape
+global  cm_typeSD
+global  cmat
+global  cnt
+global  cntG
+global  cntOR
+global  code
+global  coef
+global  coefficient
+global  cohesion
+global  completed
+global  compression
+global  condition
+global  confined
+global  confinement
+global  confining
+global  consecutive
+global  constant
+global  contact
+global  contactmap
+global  contactmodelmechanical
+global  contacts
+global  continuing
+global  contraction
+global  contribution
+global  control
+global  coordination
+global  core
+global  cos
+global  cp
+global  cpFJ1
+global  cpFJ2
+global  crack
+global  cracks
+global  create
+global  cross
+global  ct
+global  ctListProps
+global  ctLoadingPhase
+global  ctParams
+global  ctPerformStages
+global  ctSeatingPhase
+global  ct_ARatLimit
+global  ct_PTol
+global  ct_Pc
+global  ct_eRate
+global  ct_loadCode
+global  ct_loadFac
+global  ct_loadStage
+global  ct_stepLimit
+global  ct_testType
+global  ct_vLimit
+global  ct_wsdMax
+global  ct_wsdMax0
+global  ctr
+global  cuboid
+global  curOR
+global  current
+global  cycle
+global  cycles
+global  cylDelHt
+global  cylDelRad
+global  cylRad
+global  cylRadEx
+global  cylinder
+global  cylindrical
+global  dFac
+global  damp
+global  damp_con
+global  damping
+global  dat
+global  dc
+global  dcBottom
+global  dcListProps
+global  dcLoadingPhase
+global  dcParams
+global  dcPerformStages
+global  dcSetupPhase
+global  dcTop
+global  dcWp0
+global  dcWp1
+global  dc_ARatLimit
+global  dc_d
+global  dc_eRate
+global  dc_emod
+global  dc_g0
+global  dc_loadCode
+global  dc_loadFac
+global  dc_loadStage
+global  dc_stepLimit
+global  dc_w
+global  dc_wForce
+global  dc_wForceZero
+global  dc_wInit
+global  dc_wRemove
+global  dc_wStrain
+global  dc_wStrainZero
+global  dc_wda
+global  dc_wea
+global  dc_wfa
+global  dc_wfaMax
+global  dc_wfaMax0
+global  decrease
+global  default
+global  defined
+global  deformability
+global  deforming
+global  degrad
+global  degrees
+global  delAlpha
+global  delMS
+global  delTheta
+global  del_a
+global  del_phi
+global  del_r
+global  del_theta
+global  delete
+global  deltaX
+global  denom
+global  density
+global  depth
+global  derived
+global  desired
+global  deviation
+global  dfn
+global  diam
+global  diameter
+global  did
+global  dim
+global  dims
+global  dir
+global  direc
+global  direction
+global  disk
+global  disks
+global  displacement
+global  displayed
+global  distribute
+global  distribution
+global  distributions
+global  do
+global  does
+global  domain
+global  done
+global  dot
+global  dp_mode
+global  dp_nratio
+global  dp_sratio
+global  drawMe
+global  dry
+global  during
+global  e
+global  eNum
+global  eRate
+global  e_incr
+global  e_rate
+global  edge
+global  effective
+global  elements
+global  emod
+global  end1
+global  end2
+global  entering
+global  eps
+global  epsP
+global  eqPTol
+global  equal
+global  equil
+global  equilibrium
+global  error
+global  errors
+global  etaSys
+global  euler
+global  event
+global  existing
+global  exiting
+global  export
+global  extent
+global  extra
+global  f2
+global  fName
+global  face
+global  faced
+global  facet
+global  factor
+global  failMode
+global  failed
+global  failure
+global  file
+global  filename
+global  find
+global  fish
+global  fix
+global  fj_Nal
+global  fj_Nr
+global  fj_area
+global  fj_cen
+global  fj_coh
+global  fj_egap
+global  fj_elem
+global  fj_fa
+global  fj_fric
+global  fj_gap0
+global  fj_mtype
+global  fj_nal
+global  fj_nr
+global  fj_radius
+global  fj_relbr
+global  fj_rmul
+global  fj_state
+global  fj_ten
+global  fjm_
+global  fjm_B_frac
+global  fjm_G_frac
+global  fjm_G_m
+global  fjm_G_sd
+global  fjm_Nal
+global  fjm_Nr
+global  fjm_S_frac
+global  fjm_coh_m
+global  fjm_coh_sd
+global  fjm_emod
+global  fjm_fa
+global  fjm_fric
+global  fjm_igap
+global  fjm_krat
+global  fjm_rmulCode
+global  fjm_rmulVal
+global  fjm_ten_m
+global  fjm_ten_sd
+global  fjm_trackMS
+global  flag
+global  flat
+global  flatjoint
+global  floor
+global  force
+global  fracSum
+global  fraction
+global  fracture
+global  fracturelist
+global  fric
+global  fric_coef
+global  friction
+global  from
+global  frozen
+global  ft_OverlapRatios
+global  ft_SaveState
+global  ft_SetTitle
+global  ft_SmoothGrainWallInterface
+global  ft_ZeroGrainDisplacement
+global  ft_bEuler
+global  ft_bNumBond
+global  ft_bRotation
+global  ft_bRotationSet
+global  ft_cAssignLinProps
+global  ft_cBondIt
+global  ft_cBondable
+global  ft_cGrainGrain
+global  ft_cGrainWall
+global  ft_cLinearBased
+global  ft_cPosPeriodic
+global  ft_cexNum
+global  ft_clNumBond
+global  ft_eq
+global  ft_mBonded
+global  ft_setGrainWallBehavior
+global  ft_setMatBehavior
+global  ft_valNormDist
+global  fully
+global  function
+global  future
+global  gap
+global  gapIn
+global  gapInterval
+global  gapped
+global  gauss
+global  gaussian
+global  generate
+global  generator
+global  geom
+global  gm
+global  gn
+global  grain
+global  grains
+global  greater
+global  grip
+global  gripVel
+global  group
+global  grpName
+global  gs
+global  gsdGetSizeOfPercentile
+global  gsdMark
+global  gsdMeasure
+global  gsd_numGrains
+global  halt
+global  handle
+global  handled
+global  has
+global  have
+global  height
+global  hill
+global  history
+global  hl_cHill
+global  hlm_checkParams
+global  hlm_computeMicroStrucProps
+global  hlm_dampCon
+global  hlm_fricCoef
+global  hlm_listMicroStrucProps
+global  hlm_listProps
+global  hlm_makeDry
+global  hlm_makeWet
+global  hlm_mwCalled
+global  hlm_mwMoisGap
+global  hlm_mwSuction
+global  hlm_poisRatio
+global  hlm_setMatBehavior
+global  hlm_suction
+global  hlm_youngMod
+global  i
+global  iHat
+global  id
+global  idx
+global  idxBot
+global  idxTop
+global  ignore
+global  implemented
+global  import
+global  in
+global  increment
+global  inherit
+global  inheritance
+global  initDim
+global  initial
+global  initially
+global  inline
+global  installation
+global  interface
+global  interfaces
+global  interval
+global  into
+global  io
+global  is
+global  j
+global  jHat
+global  jointed
+global  justGrains
+global  k_hat
+global  kn
+global  krat
+global  kratio
+global  lambda
+global  last
+global  lc
+global  len
+global  lenFac
+global  lenHalf
+global  lenX
+global  lenY
+global  lenZ
+global  length
+global  less
+global  lf1
+global  lf2
+global  lies
+global  limit
+global  lin_mode
+global  linear
+global  linearcbond
+global  linearpbond
+global  listed
+global  ll
+global  lnm_emod
+global  lnm_fric
+global  lnm_krat
+global  load
+global  loadStage
+global  loading
+global  localdir
+global  lower
+global  mag
+global  make
+global  makeB
+global  makeG
+global  makeS
+global  make_dry
+global  make_wet
+global  many
+global  mass
+global  mat
+global  matB
+global  matV
+global  material
+global  math
+global  max
+global  maxContacts
+global  maxThick
+global  maximum
+global  may
+global  mean
+global  meanStress
+global  measure
+global  measurement
+global  mech
+global  median
+global  met
+global  method
+global  microstructural
+global  microstructure
+global  min
+global  minThick
+global  mk
+global  mode
+global  model
+global  modulus
+global  mois_state
+global  moisture
+global  moment
+global  monitoring
+global  mpComputeMicroStrucProps
+global  mpDavg
+global  mpGrp
+global  mpListCBProps
+global  mpListCommonProps
+global  mpListFJProps
+global  mpListLinProps
+global  mpListMicroProps
+global  mpListMicroStrucProps
+global  mpListPBProps
+global  mpListPackingProps
+global  mpListSBProps
+global  mpMake
+global  mpMakeFromBrick
+global  mp_CNb
+global  mp_D50
+global  mp_Davg
+global  mp_FromBrick
+global  mp_ORavg
+global  mp_ORmax
+global  mp_ORmin
+global  mp_ORs
+global  mp_PhiV50
+global  mp_PhiVavg
+global  mp_nCBb
+global  mp_nFJb
+global  mp_nFJc
+global  mp_nFJe
+global  mp_nFJiB
+global  mp_nFJiG
+global  mp_nFJiS
+global  mp_nFJiU
+global  mp_nGN
+global  mp_nHLc
+global  mp_nHLms0
+global  mp_nHLms1
+global  mp_nHLms2
+global  mp_nLNc
+global  mp_nLNgg
+global  mp_nLNgw
+global  mp_nPBb
+global  mp_nSBb
+global  msActivate
+global  msBox
+global  msBoxCenter
+global  msBoxDefine
+global  msBoxDims
+global  msBoxIN
+global  msBoxOUT
+global  msCB_sfacLen
+global  msCK_ckFilter
+global  msCK_sfacMaxThick
+global  msCK_sfacMinThick
+global  msCK_sfacSize
+global  msFG_Track
+global  msFG_TrackOn
+global  msFG_cex1
+global  msFG_cex2
+global  msFG_cex3
+global  msFG_cex4
+global  msFG_seedID
+global  msFG_seedNum
+global  msFJi_sfacRad
+global  msForceUpdate
+global  msGN_sfacRad
+global  msOff
+global  msOn
+global  msPBc_sfacLen
+global  msPBc_sfacRad
+global  msPBi_sfacRad
+global  msSBi_sfacRad
+global  msUpdateRate
+global  ms_Sinstall
+global  multiple
+global  multiplier
+global  must
+global  mv
+global  mvBottom
+global  mvCyl
+global  mvInstallStress
+global  mvListProps
+global  mvMake
+global  mvMp1
+global  mvMp2
+global  mvMp3
+global  mvSphere
+global  mvTop
+global  mvWp0x
+global  mvWp0y
+global  mvWp0z
+global  mvWp1x
+global  mvWp1y
+global  mvWp1z
+global  mvWpCyl
+global  mvWpSph
+global  mv_D
+global  mv_H
+global  mv_SARatLimit
+global  mv_Semod
+global  mv_Sinstall
+global  mv_Stol
+global  mv_Sx
+global  mv_Sy
+global  mv_Sz
+global  mv_W
+global  mv_emod
+global  mv_expandFac
+global  mv_inset
+global  mv_insetDFac
+global  mv_insetLFac
+global  mv_mInit
+global  mv_mPoros
+global  mv_mRemove
+global  mv_mStrain
+global  mv_mStrainZero
+global  mv_mStress
+global  mv_mStressZero
+global  mv_mea
+global  mv_med
+global  mv_mer
+global  mv_mev
+global  mv_mexx
+global  mv_mexy
+global  mv_mexz
+global  mv_meyy
+global  mv_meyz
+global  mv_mezz
+global  mv_mn
+global  mv_msa
+global  mv_msd
+global  mv_msm
+global  mv_msr
+global  mv_msxx
+global  mv_msxy
+global  mv_msxz
+global  mv_msyy
+global  mv_msyz
+global  mv_mszz
+global  mv_perNx
+global  mv_perNy
+global  mv_perNz
+global  mv_sInstall
+global  mv_shape
+global  mv_type
+global  mv_wAreaMode
+global  mv_wInit
+global  mv_wPoros
+global  mv_wPr
+global  mv_wPx
+global  mv_wPy
+global  mv_wPz
+global  mv_wRemove
+global  mv_wStrain
+global  mv_wStrainZero
+global  mv_wStress
+global  mv_wStressZero
+global  mv_wea
+global  mv_wed
+global  mv_wer
+global  mv_wev
+global  mv_wex
+global  mv_wey
+global  mv_wez
+global  mv_wn
+global  mv_wsa
+global  mv_wsd
+global  mv_wsm
+global  mv_wsr
+global  mv_wsx
+global  mv_wsy
+global  mv_wsz
+global  mvs_BCr
+global  mvs_BCrVal
+global  mvs_BCx
+global  mvs_BCxVal
+global  mvs_BCy
+global  mvs_BCyVal
+global  mvs_BCz
+global  mvs_BCzVal
+global  mvs_applyConfinement
+global  mvs_eqP
+global  mvs_gainUpdateRate
+global  mvs_off
+global  mvs_on
+global  mvs_setBCs
+global  mvs_vLimit
+global  myCrk
+global  mySize
+global  myStr
+global  myTen1
+global  myTen2
+global  myTen3
+global  myTypeStr
+global  n
+global  n1
+global  n2
+global  nB
+global  nBonds
+global  nC
+global  nDir
+global  nE
+global  nFJ
+global  nFac
+global  nFiltered
+global  nG
+global  nGN
+global  nOrphans
+global  nS
+global  nSeg
+global  name
+global  names
+global  nc
+global  nd
+global  near
+global  nf
+global  nfo
+global  ninety
+global  nk
+global  nl
+global  no
+global  noFric
+global  noProx
+global  node
+global  non
+global  normal
+global  not
+global  notBCNsample
+global  notFiltered
+global  notGSDsample
+global  note
+global  now
+global  np
+global  nr
+
+global  num
+global  numBins
+global  numBond
+global  numDel
+global  numFG
+global  numGrains0
+global  numGrains1
+global  numSlots
+global  number
+global  numer
+global  obtained
+global  occurred
+global  of
+global  off
+global  offset
+global  on
+global  one
+global  only
+global  opening
+global  operating
+global  or
+global  order
+global  orientation
+global  origin
+global  orphan
+global  orphaned
+global  out
+global  outside
+global  overlap
+global  overlapSides
+global  p
+global  p1
+global  p1c
+global  p2
+global  p2c
+global  pInBox
+global  pOut
+global  pPos1
+global  pPos2
+global  pRad1
+global  pRad2
+global  pack
+global  package
+global  packing
+global  parallel
+global  parameter
+global  parameters
+global  pb
+global  pb_coh
+global  pb_deformability
+global  pb_fa
+global  pb_mcf
+global  pb_radius
+global  pb_rmul
+global  pb_state
+global  pb_ten
+global  pbm_bemod
+global  pbm_bkrat
+global  pbm_coh_m
+global  pbm_coh_sd
+global  pbm_emod
+global  pbm_fa
+global  pbm_fric
+global  pbm_igap
+global  pbm_krat
+global  pbm_mcf
+global  pbm_rmul
+global  pbm_ten_m
+global  pbm_ten_sd
+global  pbond
+global  pct
+global  pebble
+global  pebblelist
+global  pebbles
+global  perV
+global  performed
+global  performing
+global  periodic
+global  phase
+global  phi0
+global  phi1
+global  physical
+global  pi
+global  pieceRad1
+global  pieceRad2
+global  pk_ARatLimit
+global  pk_PTol
+global  pk_Pm
+global  pk_fricCA
+global  pk_nc
+global  pk_procCode
+global  pk_seed
+global  pk_stepLimit
+global  pk_vLimit
+global  pl
+global  planar
+global  plane
+global  planned
+global  platen
+global  plot
+global  pointer
+global  pointnear
+global  pois_ratio
+global  poly
+global  polyaxial
+global  polygon
+global  porosity
+global  pos
+global  posBot
+global  posObj
+global  posS
+global  posTop
+global  position
+global  positive
+global  preFinal
+global  preSoften
+global  pressure
+global  proc
+global  procedure
+global  program
+global  prop
+global  properties
+global  property
+global  provided
+global  prox
+global  proximity
+global  psi
+global  ptrObj
+global  r
+global  r1
+global  r2
+global  rVel
+global  ra
+global  radCore
+global  radF
+global  radIntfc
+global  radial
+global  radius
+global  random
+global  range
+global  rate
+global  ratio
+global  ratioMax
+global  ratios
+global  rc
+global  rd
+global  reach
+global  reached
+global  real
+global  rectangular
+global  redefined
+global  redefining
+global  reduce
+global  reduction
+global  region
+global  regions
+global  relbrS
+global  relbrT
+global  remove
+global  removed
+global  requires
+global  rerun
+global  resolution
+global  retCode
+global  retained
+
+global  returnCode
+global  rf
+global  rfMin
+global  rgap
+global  rot
+global  rotation
+global  round
+global  rs
+global  runName
+global  ruptured
+global  s
+global  sFac
+global  sHat
+global  sav
+global  save
+global  sb_bmul
+global  sb_coh
+global  sb_cut
+global  sb_fa
+global  sb_mcf
+global  sb_mode
+global  sb_radius
+global  sb_rmul
+global  sb_soft
+global  sb_state
+global  sb_ten
+global  sb_tmul
+global  sbm_bkrat
+global  sbm_bmul
+global  sbm_coh_m
+global  sbm_coh_sd
+global  sbm_cut
+global  sbm_emod
+global  sbm_fa
+global  sbm_fric
+global  sbm_igap
+global  sbm_krat
+global  sbm_mcf
+global  sbm_rmul
+global  sbm_soft
+global  sbm_ten_m
+global  sbm_ten_sd
+global  sbm_tmul
+global  sbond
+global  scalesphere
+global  scaling
+global  sdev
+global  seating
+global  seed
+global  servo
+global  set
+global  sgn
+global  shape
+global  shear
+global  side
+global  sin
+global  single
+global  situation
+global  size
+global  sj_gap
+global  sj_radius
+global  sj_unorm
+global  skip
+global  skirt
+global  skirted
+global  slit
+global  slot
+global  slots
+global  slt
+global  smooth
+global  smoothjoint
+global  soft
+global  softbond
+global  softenElastic
+global  softenPlastic
+global  softening
+global  solve
+global  spCarve
+global  spDavg
+global  spListProps
+global  sp_D
+global  sp_H
+global  sp_W
+global  sp_carve
+global  sp_expandFac
+global  sp_insetDFac
+global  sp_insetLFac
+global  sp_sea
+global  sp_shape
+global  sp_ssa
+global  sp_testType
+global  sp_ttStressStrainInit
+global  sp_wemod
+global  space
+global  spanning
+global  specified
+global  specify
+global  sphRad
+global  sphere
+global  spin
+global  sqrt
+global  stage
+global  stages
+global  standard
+global  state
+global  static
+global  status
+global  step
+global  stepLimit
+global  stiffness
+global  stop
+global  str
+global  strain
+global  strength
+global  stress
+
+global  successful
+global  suction
+global  sum
+global  sumD
+global  sumMass
+global  sumOR
+global  sumSize
+global  surface
+global  system
+global  t
+global  tHat
+global  tLast
+global  tSys
+
+global  tagName
+global  template
+global  ten
+global  tensile
+global  tension
+global  termination
+global  test
+global  tf
+global  than
+global  that
+global  the
+global  theFric
+global  their
+
+global  theta
+global  theta0
+global  theta1
+global  theta2
+global  thick
+global  thickness
+global  this
+global  three
+global  thus
+global  tidx
+global  tidxMax
+global  tight
+global  timestep
+global  titStr
+global  title
+global  tl
+global  to
+global  tolerance
+global  too
+global  top
+global  total
+global  tp
+global  tracking
+
+global  try
+global  tt
+global  ttGripBottom
+global  ttGripNot
+global  ttGripTop
+global  ttListProps
+global  ttLoadingPhase
+global  ttParams
+global  ttPerformStages
+global  ttSetupPhase
+global  tt_bea
+global  tt_eRate
+global  tt_loadCode
+global  tt_loadFac
+global  tt_loadStage
+global  tt_msaMax
+global  tt_msaMax0
+global  tt_tg
+global  twisting
+global  two
+global  typeid
+global  types
+global  udm_ListProps
+global  udm_checkParams
+global  udm_computeMicroStrucProps
+global  udm_listMicroStrucProps
+global  udm_listProps
+global  unbal
+global  unbonded
+global  unconfined
+global  undef
+global  uniaxial
+global  uniform
+global  union
+global  unit
+global  until
+global  up
+global  update
+global  updated
+global  upper
+global  user
+global  vLimit
+global  valid
+global  value
+global  vec2D
+global  vel
+global  velocity
+global  vertex
+global  vertexlist
+global  vertices
+global  vessel
+global  via
+global  view
+global  virtual
+global  vol
+global  volume
+global  vp
+global  w
+global  wGain
+global  wVel
+global  wall
+global  wallVel
+global  walls
+global  was
+global  wet
+global  wf
+global  when
+global  which
+
+global  width
+global  with
+global  within
+global  wp0
+global  wp1
+global  x
+global  x0
+global  x1
+global  x2
+global  x3
+global  x4
+global  xCen
+global  xHalfWid
+global  xLt
+global  xRt
+global  xc
+global  xcen
+global  xd
+global  xf
+global  xhi
+global  xi
+global  xl
+global  xlo
+global  xs
+global  xy
+global  y
+global  y0
+global  y1
+global  yHalfWid
+global  yet
+global  yhi
+global  ylo
+global  young_mod
+global  z
+global  zHalfWid
+global  zero
+global  zhi
+global  zlo
+
+
+
+global ft_bEuler, mv_insetDFac, _ftOneSixth
+global ft_bRotationSet
+global ft_bRotation
+global ft_SaveState
+global ft_SetTitle
+global ft_valNormDist
+global ft_eq
+global ft_OverlapRatios
+global ft_setMatBehavior
+global ft_setMatBehavior
+global ft_setGrainWallBehavior
+global ft_SmoothGrainWallInterface
+global ft_ZeroGrainDisplacement
+global ft_mBonded
+global ft_bNumBond
+global ft_clNumBond
+global ft_cGrainGrain
+global ft_cGrainWall
+global ft_cLinearBased
+global ft_cBondable
+global ft_cBondIt
+global ft_cAssignLinProps
+global ft_cPosPeriodic
+global mv_type
+global mv_emod, _mvMakeWalls, mv_wInit
+global mv_mInit
+global mv_mRemove
+global mv_mStressZero
+global mv_mStrainZero
+global mv_mStress
+global mv_mStrain
+global mv_mPoros
+global mv_wInit
+global mv_wRemove
+global mv_wStressZero
+global mv_wStrainZero
+global mv_wStress
+global mv_wStrain
+global mv_wPoros
+global _mvMakeMeasRegions
+global mv_shape
+global mv_D, mv_H, mv_W
+global  _ckCodeDependencies
+global  _ckSize
+global  ckGetSize
+global  _ckSize
+global  ckGetSize
+global  ckInit
+global  ckOn
+global  ckOff  ; defined above
+global  ckListData
+global  ckForceUpdate
+global  ckGetDFN
+global  _ckUpdate
+global  ckFilter
+global  _ckBondBreak
+global  _ckAddCrack
+global  _ckName
+global  _ckNameType
+global  _ckNameFailMode
+global  ck_nOrphans
+global  ck_nFiltered
+global  _ckGeom
+global  _ckGeomNoContact
+global  _ckGeomContact
+global  _ckBallBall
+global  _ckDiam
+global  _ckDeformabilityRadius
+global  _ckCountCrack
+global  _ckResetCrackData
+global  _ctCheckParams
+global  ctListProps
+global  ctSeatingPhase
+global  ctLoadingPhase
+global  ctPerformStages
+global  _ctPerformStage
+global  _ctEndStage
+global  _ctMatTestStr
+global  _ctTestStr
+global  _ctApplyRadialStrain
+global  _aRSdone ;{i: {mv_wex or mv_wer}, {_aRSwex0 or _aRSwer0}, _aRSeincr}
+global  _ctApplyAxialStrain
+global  _aASdone ;{i: mv_wea, _aASwea0, _aASeincr}
+global  _ctUpdate_wsdMax
+global  _aASTPPdone ;{i: mv_wsd, ct_loadFac, ct_wsdMax}
+global  _ctApplyAxialPressure
+global  _dcCheckParams
+global  dcListProps
+global  dcSetupPhase
+global  dcLoadingPhase
+global  dcPerformStages
+global  _dcPerformStage
+global  _dcEndStage
+global  _dcMatTestStr
+global  _dcTestStr
+global  _dcApplyAxialStrain
+global  _dcSetWallVel
+global  _aASdone ;{i: dc_wea, _aASwea0, _aASeincr}
+global  _dcUpdate_wfaMax
+global  _aASTPPdone ;{i: dc_wfa, dc_loadFac, dc_wfaMax}
+global  dc_wInit
+global  dc_wRemove
+global  dc_wForceZero
+global  dc_wStrainZero
+global  dc_wda
+global  dc_wForce
+global  dc_wStrain
+global  _dcMakeWalls
+global  mvMake
+global  _mvMakeWalls
+global  _mvMakeMeasRegions
+global  _mvVolume
+global  _mvCheckParams
+global  mvListProps
+global  mv_mInit
+global  mv_mRemove
+global  mv_mStressZero
+global  mv_mStrainZero
+global  mv_mStress
+global  mv_mStrain
+global  mv_mPoros
+global  mv_wInit
+global  mv_wRemove
+global  mv_wStressZero
+global  mv_wStrainZero
+global  mv_wStress
+global  _mvsRadForce
+global  mv_wStrain
+global  _mv_wAreas
+global  mv_wPoros
+global  mvs_on
+global  mvs_off
+global  _mvsCheckMeasWallOverlap
+global  mvs_setBCs
+global  mvs_applyConfinement
+global  mvs_eqP
+global  _eqPMet  ;{o: _eqP{x,y,z,r}eps; i: _eqPTol}
+global  _mvsEnforceVlimit
+global  _mvsSetRadVel
+global  _mvsUpdateRadDiam
+global  _mvsActive
+global  _mvsGain
+global  _mvsGainCompute
+global  msOn
+global  msOff
+global  msForceUpdate
+global  msBoxDefine
+global  _msUpdate
+global  _msClear
+global  _msBoxGeomSetUpdate
+global  _msBoxMarkGrains
+global  _msGN_Make
+global  _msFG_Make
+global  _msFGdrawFacedGrain
+global  msFG_Track
+global  _msFGcoreRad
+global  _msFGdrawCore
+global  _msFGdrawSkirtedFaces
+global  _msFGdrawSkirtedFaces2D
+global  _msFGdrawSkirtedFaces3D
+global  _msCB_Make
+global  _msPBi_Make
+global  _msPBc_Make
+global  _msSBi_Make
+global  _msSBiGrpName
+global  _msFJi_Make
+global  _msFJiDrawIntfc
+global  _msFJiDrawCoordSys
+global  _msFJiDrawDisc
+global  _msFJiDrawDisc3D
+global  _msFJiDrawDisc2D
+global  _msCK_Make
+global  _msCKdrawMe
+global  _msCKAvgSize
+global  _msCKthick
+global  _msNdir
+global  _msSdir
+global  _msTdir
+global  _msXiDir
+global  _msEtaDir
+global  _msPoly3
+global  _msPoly4
+global  _msLineA
+global  _msLineB
+global  _msArc
+global  _msDisk
+global  _msSkirt
+global  _msCylinder
+global  _msSphere
+global  _msLineThick2D
+global  _msCircle2D
+global  _msGrainPieceInBox
+global  _msGrainPiecePt
+global  _msLocalS
+global  _ftCodeDependencies
+global  ft_bEuler
+global  ft_bRotationSet
+global  ft_bRotation
+global  _ftInit
+global  _ftConstants
+global  _ftModulus
+global  _ftAng2D
+global  _ftAngMin
+global  ft_SaveState
+global  ft_SetTitle
+global  ft_valNormDist
+global  ft_eq
+global  ft_OverlapRatios
+global  ft_setMatBehavior
+global  ft_setMatBehavior
+global  ft_setGrainWallBehavior
+global  ft_SmoothGrainWallInterface
+global  ft_ZeroGrainDisplacement
+global  ft_mBonded
+global  ft_bNumBond
+global  ft_clNumBond
+global  ft_cGrainGrain
+global  ft_cGrainWall
+global  ft_cLinearBased
+global  ft_cBondable
+global  ft_cBondIt
+global  ft_cAssignLinProps
+global  bcnMeasure
+global  bcnMark
+global  gsdMeasure
+global  gsdMark
+global  gsdGetSizeOfPercentile
+global  _gsdMakeGSDretained
+global  _gsdBounds  ;{o: _gsdDmin, _gsdDmax}
+global  _gsdMakeGSD
+global  _clDiam
+global  mpMake
+global  mvInstallStress
+global  _mvSupdateSR
+global  _mvShalt ;{i: mv_Stol, mv_S{x,y,z}, mv_ms{xx,yy,zz}}
+global  _mvSbondBreak
+global  mpMakeFromBrick
+global  _mpSetEffLinBehavior
+global  _mpPackingPhase
+global  _mpPackIsoState
+global  _mpMaxORisSmall  ;{i: _pkORmaxLimit, _pkORcnt, _pkORupdateRate}
+global  _mpMSisNearZero
+global  _mpDeleteGrainsOutOfVessel
+global  _mpPackBdryContract
+global  _mpPackGrainScale
+global  _GSPMet
+global  ft_cPosPeriodic
+global  _GSgetAlpha
+global  _GSgetPebble
+global  _GSgetRpo
+global  _GSgetRpoBP
+global  _GSapplyAlpha
+global  _mpFinalizationPhase
+global  _mpAssignSB
+global  _mpAssignPB
+global  _mpAssignCB
+global  _mpAssignFJ
+global  _mpAssignFJProps
+global  _mpFJrmulReduce
+global  _mpFJrmulRemoveOverlap
+global  _mpFJrmulReduceAll
+global  _mpFJsetMicroStruc
+global  _mpAssignSBprops
+global  _mpAssignSBbond
+global  _mpAssignPBprops
+global  _mpAssignPBbond
+global  _mpAssignCBbond
+global  _mpMakeGrains
+global  _mpBallDistribute
+global  _mpClumpDistribute
+global  _mpCylRange
+global  _mpCylRangeSup
+global  _mpSphRange
+global  _mpSphRangeSup
+global  _mpSetGrainDamp
+global  _mpSetGrainDensity
+global  _mpCheckAllParams
+global  _mpCheckCommonParams
+global  _mpCheckPackingParams
+global  _mpCheckLinParams
+global  _mpCheckPBParams
+global  _mpCheckSBParams
+global  _mpCheckCBParams
+global  _mpCheckFJParams
+global  udm_checkParams
+global  mpListMicroProps
+global  mpListCommonProps
+global  mpListPackingProps
+global  mpListLinProps
+global  mpListCBProps
+global  mpListPBProps
+global  mpListSBProps
+global  mpListFJProps
+global  udm_ListProps
+global  mpListMicroStrucProps
+global  udm_listMicroStrucProps
+global  mpDavg
+global  mpComputeMicroStrucProps
+global  udm_computeMicroStrucProps
+global  _ttCheckParams
+global  ttListProps
+global  ttSetupPhase
+global  ttLoadingPhase
+global  ttPerformStages
+global  _ttPerformStage
+global  _ttEndStage
+global  _ttMatTestStr
+global  _ttTestStr
+global  _ttApplyAxialStrain
+global  _ttSetGripVel
+global  _aASdone ;{i: mv_mea, _aASmea0, _aASeincr}
+global  _ttUpdate_msaMax
+global  _ttUpdate_tt_bea
+global  _aASTPPdone ;{i: mv_msa, tt_loadFac, tt_msaMax}
+global mv_expandFac, mv_insetLFac
+end
+@inline
+
 ;fname: ft.fis
 ;
 ; FishTank support functions.
@@ -1826,9 +3669,9 @@ fish define msOn
   ;
   if _msBoxDefined = false then ; default, infinite-size box
     if global.dim == 3 then
-      msBoxDefine( [vector(0.0, 0.0, 0.0)], [vector(1e20, 1e20, 1e20)] )
+      msBoxDefine( vector(0.0, 0.0, 0.0), vector(1e20, 1e20, 1e20) )
     else ; 2D model
-      msBoxDefine( [vector(0.0, 0.0)]     , [vector(1e20, 1e20)]       )
+      msBoxDefine( vector(0.0, 0.0)     , vector(1e20, 1e20)       )
     end_if
   end_if
   ;
@@ -2045,10 +3888,10 @@ fish define _msGN_Make
     if ball.prop( bp, 'msBox' ) == 'msBoxIN' then
       if global.dim == 3 then
         _msSphere( gs, '', ...
-                   ball.pos(bp), [msGN_sfacRad * ball.radius(bp)] )
+                   ball.pos(bp), msGN_sfacRad * ball.radius(bp) )
       else ; 2D model
         _msCircle2D( gs, '', ...
-                     ball.pos(bp), [msGN_sfacRad * ball.radius(bp)] )
+                     ball.pos(bp), msGN_sfacRad * ball.radius(bp) )
       end_if
     end_if
   end_loop
@@ -2337,7 +4180,7 @@ fish define _msCB_Make
             local p1 = _msGrainPiecePt( cp, 1 )
             local p2 = _msGrainPiecePt( cp, 2 )
             _msLineB( gs, '', ...
-                      [msCB_sfacLen * math.mag(p2 - p1)], contact.pos(cp), contact.normal(cp) )
+                      msCB_sfacLen * math.mag(p2 - p1), contact.pos(cp), contact.normal(cp) )
           end_if
         end_if
       end_if
@@ -2370,11 +4213,11 @@ fish define _msPBi_Make
           if   ( _msGrainPieceInBox( cp, 1 ) ) ...
              & ( _msGrainPieceInBox( cp, 2 ) ) then
             if global.dim == 3 then
-              _msDisk( gs, '', [msPBi_sfacRad * contact.prop(cp, 'pb_radius')], ...
+              _msDisk( gs, '', msPBi_sfacRad * contact.prop(cp, 'pb_radius'), ...
                        contact.pos(cp), contact.normal(cp)                      )
             else ; 2D model
               local tHat = vector( -contact.normal.y(cp), contact.normal.x(cp) )
-              _msLineB( gs, '', [2.0 * msPBi_sfacRad * contact.prop(cp, 'pb_radius')], ...
+              _msLineB( gs, '', 2.0 * msPBi_sfacRad * contact.prop(cp, 'pb_radius'), ...
                         contact.pos(cp), tHat)
             end_if
           end_if
@@ -2421,12 +4264,12 @@ fish define _msPBc_Make
             local Lp = msPBc_sfacLen * math.mag( _msGrainPiecePt(cp,2) - _msGrainPiecePt(cp,1) )
             if global.dim == 3 then
               _msCylinder( gs, '',                                              ...
-                           [msPBc_sfacRad * contact.prop(cp, 'pb_radius')], Lp, ...
+                           msPBc_sfacRad * contact.prop(cp, 'pb_radius'), Lp, ...
                            contact.pos(cp), contact.normal(cp)                      )
             else ; 2D model
               _msLineThick2D( gs, '',                                                  ...
                               Lp, contact.pos(cp), contact.normal(cp),              ...
-                              [2.0 * msPBc_sfacRad * contact.prop(cp, 'pb_radius')]     )
+                              2.0 * msPBc_sfacRad * contact.prop(cp, 'pb_radius')     )
             end_if
           end_if
         end_if
@@ -2472,11 +4315,11 @@ fish define _msSBi_Make
           & ( _msGrainPieceInBox( cp, 2 ) ) then
           local grpName = _msSBiGrpName( contact.prop(cp, 'sb_state') )
           if global.dim == 3 then
-            _msDisk( gs, grpName, [msSBi_sfacRad * contact.prop(cp, 'sb_radius')], ...
+            _msDisk( gs, grpName, msSBi_sfacRad * contact.prop(cp, 'sb_radius'), ...
                      contact.pos(cp), contact.normal(cp)                      )
           else ; 2D model
             local tHat = vector( -contact.normal.y(cp), contact.normal.x(cp) )
-            _msLineB( gs, grpName, [2.0 * msSBi_sfacRad * contact.prop(cp, 'sb_radius')], ...
+            _msLineB( gs, grpName, 2.0 * msSBi_sfacRad * contact.prop(cp, 'sb_radius'), ...
                       contact.pos(cp), tHat)
           end_if
         end_if
@@ -2559,8 +4402,8 @@ fish define _msFJiDrawIntfc( gs, cp, radIntfc )
              radIntfc, contact.pos(cp), contact.normal(cp) )
   else ; 2D model
     _msLineA( gs, 'interface', ...
-              [contact.pos(cp) + (radIntfc * _msTdir(cp))], ...
-              [contact.pos(cp) - (radIntfc * _msTdir(cp))]      )
+              contact.pos(cp) + (radIntfc * _msTdir(cp)), ...
+              contact.pos(cp) - (radIntfc * _msTdir(cp))      )
   end_if
 end
 ;------------------------------------------------
@@ -2568,23 +4411,23 @@ fish define _msFJiDrawCoordSys( gs, cp, radIntfc )
   if global.dim == 3 then
     _msLineA( gs, 's-tSys', ...
               contact.pos(cp), ...
-              [contact.pos(cp) + (1.1 * radIntfc * _msSdir(  cp ))] )
+              contact.pos(cp) + (1.1 * radIntfc * _msSdir(  cp )) )
     _msLineA( gs, 's-tSys', ...
               contact.pos(cp), ...
-              [contact.pos(cp) + (1.4 * radIntfc * _msTdir(  cp ))] )
+              contact.pos(cp) + (1.4 * radIntfc * _msTdir(  cp )) )
     _msLineA( gs, 'xi-etaSys', ...
               contact.pos(cp), ...
-              [contact.pos(cp) + (1.1 * radIntfc * _msXiDir( cp ))] )
+              contact.pos(cp) + (1.1 * radIntfc * _msXiDir( cp )) )
     _msLineA( gs, 'xi-etaSys', ...
               contact.pos(cp), ...
-              [contact.pos(cp) + (1.4 * radIntfc * _msEtaDir(cp ))] )
+              contact.pos(cp) + (1.4 * radIntfc * _msEtaDir(cp )) )
   else ; 2D model
     _msLineA( gs, 'n-tSys', ...
               contact.pos(cp), ...
-              [contact.pos(cp) + (0.5 * radIntfc * _msNdir(  cp ))] )
+              contact.pos(cp) + (0.5 * radIntfc * _msNdir(  cp )) )
     _msLineA( gs, 'n-tSys', ...
               contact.pos(cp), ...
-              [contact.pos(cp) + (0.5 * radIntfc * _msTdir(  cp ))] )
+              contact.pos(cp) + (0.5 * radIntfc * _msTdir(  cp )) )
   end_if
 end
 ;------------------------------------------------
@@ -2627,8 +4470,8 @@ fish define _msFJiDrawDisc3D( gs, cp, radIntfc )
     ;*** Draw the centroid location.
     local xCen = contact.prop( cp, 'fj_cen' )
     _msLineA( gs, 'elements', ...
-              [xCen - 0.02*radIntfc*_msSdir(cp)], ...
-              [xCen + 0.02*radIntfc*_msSdir(cp)] )
+              xCen - 0.02*radIntfc*_msSdir(cp), ...
+              xCen + 0.02*radIntfc*_msSdir(cp) )
   end_loop
 end
 ;##########
@@ -2643,15 +4486,15 @@ fish define _msFJiDrawDisc2D( gs, cp, radIntfc )
     local xLt = xCen - (lenHalf * _msTdir(cp))
     local xRt = xCen + (lenHalf * _msTdir(cp))
     _msLineA( gs, 'elements', ...                     ; left  side
-              [xLt - 0.08*radIntfc*_msNdir(cp)], ...
-              [xLt + 0.08*radIntfc*_msNdir(cp)] )
+              xLt - 0.08*radIntfc*_msNdir(cp), ...
+              xLt + 0.08*radIntfc*_msNdir(cp) )
     _msLineA( gs, 'elements', ...                     ; right side
-              [xRt - 0.08*radIntfc*_msNdir(cp)], ...
-              [xRt + 0.08*radIntfc*_msNdir(cp)] )
+              xRt - 0.08*radIntfc*_msNdir(cp), ...
+              xRt + 0.08*radIntfc*_msNdir(cp) )
     ;
     ;*** Draw the centroid location.
     _msLineA( gs, 'elements', ...
-              xcen, [xcen + 0.08*radIntfc*_msNdir(cp)] )
+              xcen, xcen + 0.08*radIntfc*_msNdir(cp) )
   end_loop
 end
 
@@ -3877,8 +5720,8 @@ fish define gsdMeasure( numBins )
   end_if
   _gsdCalled = true
   loop local i (1, numBins+1)  ; Initialize tables with (0,0) in all slots.
-    table.value( 'GSD'         , i ) = [vector(0.0,0.0)]
-    table.value( 'GSD-retained', i ) = [vector(0.0,0.0)]
+    table.value( 'GSD'         , i ) = vector(0.0,0.0)
+    table.value( 'GSD-retained', i ) = vector(0.0,0.0)
   end_loop
   ;
   gsdMark
@@ -4075,7 +5918,7 @@ fish define mpMake( justGrains, msActivate )
 ;      mpGrp(i) : group name of grains in sizeDist-i, i=1,2,...,cm_nSD
 ;                   The names are <cm_matName>-SD<i>, e.g., Class5_dense-SD1.
 ;
-  ft_SetTitle( ['Making ' + cm_matName + ' material...'] )
+  ft_SetTitle( 'Making ' + cm_matName + ' material...' )
   ;
   local myStr = '## mpMake, '
   if justGrains # 0 then
@@ -4113,7 +5956,7 @@ fish define mpMake( justGrains, msActivate )
     msOn
   end_if
   if mv_type == 0 then
-    ft_SetTitle( [cm_matName + ' material in physical vessel.'] )
+    ft_SetTitle( cm_matName + ' material in physical vessel.' )
     ft_SaveState( cm_matNameSAV, 'matV' )
     ;
     ; *** If a bonded material, then
@@ -4126,7 +5969,7 @@ fish define mpMake( justGrains, msActivate )
       end_command
       ft_ZeroGrainDisplacement
       msForceUpdate
-      ft_SetTitle( [cm_matName + ' material removed from physical vessel.'] )
+      ft_SetTitle( cm_matName + ' material removed from physical vessel.' )
       ft_SaveState( cm_matNameSAV, 'mat' )
     end_if
   else ; mv_type == 1
@@ -4138,7 +5981,7 @@ fish define mpMake( justGrains, msActivate )
       brick make   id 1
       brick export id 1 filename [fName] skip-errors
     end_command
-    ft_SetTitle( [cm_matName + ' material in periodic vessel.'] )
+    ft_SetTitle( cm_matName + ' material in periodic vessel.' )
     ft_SaveState( cm_matNameSAV, 'perV' )
   end_if
   io.out('## mpMake (exiting).')
@@ -4154,7 +5997,7 @@ fish define mvInstallStress
 ; OUT: _mvSgainPer
 ;
   io.out('## mvInstallStress (entering).')
-  ft_SetTitle( ['Installing stress into '+cm_matName+' material by deforming periodic space.'] )
+  ft_SetTitle( 'Installing stress into '+cm_matName+' material by deforming periodic space.' )
   ;
   _mvSnumBreak = 0
   local E0 = 2.0 * mv_Semod  ; Insure convergence condition stated above via Eqn. (3.38)
@@ -4229,7 +6072,7 @@ fish define mpMakeFromBrick( ctr )
 ;      Saved State (with corresponding model title):
 ;         <cm_matNameSAV>-matB : material assembled from periodic brick
 ;
-  ft_SetTitle( ['Making ' + cm_matName + ' material from periodic brick...'] )
+  ft_SetTitle( 'Making ' + cm_matName + ' material from periodic brick...' )
   ;
   local fName = string(cm_matNameSAV) + '.p' + string(global.dim) + 'brk'
   local lenX, lenY, lenZ
@@ -4265,7 +6108,7 @@ fish define mpMakeFromBrick( ctr )
   end_if
   mp_FromBrick = 1
   ;
-  ft_SetTitle( [cm_matName + ' material assembled from periodic brick.'] )
+  ft_SetTitle( cm_matName + ' material assembled from periodic brick.' )
   ft_SaveState( cm_matNameSAV, 'matB' )
 end
 ;------------------------------------------------
