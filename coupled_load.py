@@ -21,7 +21,50 @@ class cube_blast(object):
         contact prop dp_sratio 0.1
         ball prop "dp_nratio" 0.1
         ball prop "dp_sratio" 0.1
+
         """.format(savefile=material,hole_radius=hole_radius))
+
+
+        inner_radius = it.fish.get("mv_W")/2.0
+        assert it.fish.get("mv_W") == it.fish.get("mv_D")
+        outer_radius = inner_radius*3
+        thickness = it.fish.get("mv_H")
+
+        it.command(f"""
+        model config dynamic
+        model domain extent {-1.1*outer_radius} {1.1*outer_radius} {-1.1*outer_radius} {1.1*outer_radius} {-1.1*thickness} {1.1*thickness} condition destroy
+        zone create cylindrical-shell ...
+          point 0 0                 {0}              {-thickness/2.0} ...
+          point 1 {outer_radius}    {0}              {-thickness/2.0} ...
+          point 2 0                 {0}              {thickness/2.0} ...
+          point 3 0                 {-outer_radius}  {-thickness/2.0} ...
+          point 8 {inner_radius}    {0}              {-thickness/2.0} ...
+          point 9 0                 {-inner_radius}  {-thickness/2.0} ...
+          point 10 {inner_radius}    {0}              {thickness/2.0} ...
+          point 11 0                 {-inner_radius}  {thickness/2.0} ...
+          size 15 4 15 ratio 1.1 1.1 1
+
+
+        zone reflect origin 0 0 0 norm -1 0 0
+        zone reflect origin 0 0 0 norm 0 -1 0
+
+        zone cmodel assign elastic
+        zone property young [pbm_emod+lnm_emod] poisson 0.25
+        zone property density [cm_densityVal]
+        wall-zone create name 'dem_boundary' range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {inner_radius}
+
+        zone gridpoint fix velocity-z range position-z {thickness/2.0}
+        zone gridpoint fix velocity-z range position-z {-thickness/2.0}
+        zone face apply quiet-normal range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {.99*outer_radius} not
+        zone face apply velocity-strike 0 range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {.99*outer_radius} not
+        zone face apply velocity-dip 0 range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {.99*outer_radius} not
+
+        contact cmat default model linearpbond property pb_ten 1e100 pb_coh 1e100 method deformability emod {it.fish.get('mv_emod')} kratio 1.0
+
+        model clean all
+        contact method bond gap 0 {0.1*it.ball.find(1).radius()} range contact type 'ball-facet'
+        contact property lin_mode 1 pb_ten 1e100 pb_coh 1e100 range contact type 'ball-facet'
+        """)
 
         self.case = case
         self.prefix = prefix
@@ -89,12 +132,12 @@ def broken_bonds():
 def show_cracks():
     cracks = broken_bonds()
     output = open("tmp.geom", "w")
-    print >> output, "ITASCA GEOMETRY3D"
-    print >> output, "NODES ; id x y z EXTRA 1 value"
+    print("ITASCA GEOMETRY3D", file=output)
+    print("NODES ; id x y z EXTRA 1 value", file=output)
     for i, c in enumerate(cracks):
         b1,b2 = c
         pos = 0.5*(it.ball.find(b1).pos() + it.ball.find(b2).pos())
-        print >> output, "{} {} {} {} EXTRA 1 0".format(i+1,*pos)
+        print("{} {} {} {} EXTRA 1 0".format(i+1,*pos), file=output)
     output.close()
     it.command("geom delete")
     it.command("geom import 'tmp.geom' format geometry")

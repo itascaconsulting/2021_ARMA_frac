@@ -1,5 +1,9 @@
 ; Running this file creates all the material specimens and runs all the cases described in the report
 model new
 MODEL LARGE-STRAIN on
-call "coarse_box/myMatGen.p3dvr"
-call "parameter_study.py"
+;call "coarse_box/myMatGen.p3dvr"
+;call "parameter_study.py"
+
+
+call "coupled/myMatGen.p3dvr"
+;call "coupled_test.py"

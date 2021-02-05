@@ -1,28 +1,27 @@
 from IPython import get_ipython; get_ipython().magic('reset -sf')
-from importlib import reload
-import load
-load = reload(load)
-
+import itasca as it
+it.command("python-reset-state false")
 import numpy as np
 import pylab as plt
 import math
-import itasca as it
-it.command("python-reset-state false")
 from scipy.constants import inch
+from importlib import reload
+import coupled_load
+coupled_load = reload(coupled_load)
 
-from load import blast, apply_gas_force, pressure
+blast, apply_gas_force, pressure = coupled_load.blast, coupled_load.apply_gas_force, coupled_load.pressure
 
 ct = 3e-4 # characteristic time
 cp = 1e6  # characteristic pressure
 
-material = "coarse_box-mat.p3sav"
+material = "disc-mat.p3sav"
 
 hole_radius = 1.5*inch/2.0
 
-prefix = "cvis"
+prefix = "dvis"
 c=0
-for pmult in [0.75, 1.0, 1.25, 1.5, 2.0]:
-    for rmult in [0.1,0.5,1,2,10]:
+for pmult in [2.0]:
+    for rmult in [0.1]:
         rise_time = ct * rmult
         peak_pressure = cp * pmult
         pressure_decay_time = 5*ct
