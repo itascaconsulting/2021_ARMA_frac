@@ -6,7 +6,8 @@
 ;#####################################################
 def mpSetCommonParams
 ; Set common parameters.
-  cm_matName = 'SS_ParallelBonded'
+  cm_matName = 'coarse_box'
+  cm_matNameSAV = cm_matName
   ; ** Typical sandstone (parallel-bonded material).
   cm_matType = 2
   cm_localDampFac = 0.7

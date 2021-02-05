@@ -19,8 +19,8 @@ class cube_blast(object):
         ball delete range cyl end-1 0 0 -100 end-2 0 0 100 rad {hole_radius}
         contact prop dp_nratio 0.1
         contact prop dp_sratio 0.1
-        ball prop "dp_nratio" 0.1
-        ball prop "dp_sratio" 0.1
+        ball prop dp_nratio 0.1
+        ball prop dp_sratio 0.1
         """.format(savefile=material,hole_radius=hole_radius))
 
         self.case = case
@@ -50,7 +50,7 @@ class cube_blast(object):
         it.command("solve age {}".format(it.mech_age() + deltat))
 
     def save(self):
-        it.command("save '{}blast{}.p3sav'".format(self.prefix, self.case))
+        it.command("model save '{}blast{}.p3sav'".format(self.prefix, self.case))
         np.savetxt("{}blast{}.txt".format(self.prefix, self.case), self.data)
 
     def show(self):

@@ -5,7 +5,7 @@
         "Version" : 7.0000000e+00 ,
         "Update" : 131 ,
         "Binary" : false ,
-        "DateTime" : "2021-02-04T15:37:51" ,
+        "DateTime" : "2021-02-05T07:40:04" ,
         "Format" : 0 ,
         "Dimension" : 3 
     },
@@ -13,7 +13,7 @@
         {
             "Name" : "Terminal" ,
             "Entry" : {
-                "SaveFile" : "PFCmat-mat.p3sav" ,
+                "SaveFile" : "cvisblast24.p3sav" ,
                 "Kernel" : {
                     "LoadCommands" : [  ],
                     "ModuleList" : {
@@ -35,7 +35,32 @@
                 "SaveFiles" : {
                     "Files" : [ 
                         "PFCmat-matV.p3sav" ,
-                        "PFCmat-mat.p3sav" 
+                        "PFCmat-mat.p3sav" ,
+                        "cvisblast0.p3sav" ,
+                        "cvisblast1.p3sav" ,
+                        "cvisblast2.p3sav" ,
+                        "cvisblast3.p3sav" ,
+                        "cvisblast4.p3sav" ,
+                        "cvisblast5.p3sav" ,
+                        "cvisblast6.p3sav" ,
+                        "cvisblast7.p3sav" ,
+                        "cvisblast8.p3sav" ,
+                        "cvisblast9.p3sav" ,
+                        "cvisblast10.p3sav" ,
+                        "cvisblast11.p3sav" ,
+                        "cvisblast12.p3sav" ,
+                        "cvisblast13.p3sav" ,
+                        "cvisblast14.p3sav" ,
+                        "cvisblast15.p3sav" ,
+                        "cvisblast16.p3sav" ,
+                        "cvisblast17.p3sav" ,
+                        "cvisblast18.p3sav" ,
+                        "cvisblast19.p3sav" ,
+                        "cvisblast20.p3sav" ,
+                        "cvisblast21.p3sav" ,
+                        "cvisblast22.p3sav" ,
+                        "cvisblast23.p3sav" ,
+                        "cvisblast24.p3sav" 
                     ]
                 },
                 "ResultFiles" : {
@@ -374,9 +399,9 @@
                         "View" : {
                             "Locked" : false ,
                             "Perspective" : true ,
-                            "EyePosition" : { "x" : -8.384227137483258e-03  , "y" : -5.057477359126367e-02  , "z" : 4.329512134429957e-01 } ,
+                            "EyePosition" : { "x" : -5.703386938365662e-03  , "y" : -2.456172769048966e-03  , "z" : 4.339263977908263e-01 } ,
                             "ViewCenter" : { "x" : 5.283839266152651e-03  , "y" : -1.922360086510772e-02  , "z" : 3.974591688215216e-02 } ,
-                            "Up" : { "x" : -9.623722822262143e-01  , "y" : -2.661769548102777e-01  , "z" : -5.467558075260846e-02 } ,
+                            "Up" : { "x" : 3.454261621765372e-02  , "y" : -9.984589292601393e-01  , "z" : 4.343471244910053e-02 } ,
                             "Magnification" : 1.000000000000000e+00 ,
                             "FirstViewAuto" : false ,
                             "MinClipPlaneDist" : -1.000000000000000e+10 ,
@@ -528,9 +553,9 @@
                             {
                                 "Name" : "Ball Plot" ,
                                 "Item" : {
-                                    "Active" : false ,
+                                    "Active" : true ,
                                     "Type" : 0 ,
-                                    "PIActive" : false ,
+                                    "PIActive" : true ,
                                     "ShowCaption" : true ,
                                     "Title" : {
                                         "Active" : true ,
@@ -689,9 +714,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "Ramp" : 0 ,
-                                        "Minimum" : 1.798005943674965e-05 ,
-                                        "Maximum" : 3.611209753423139e-05 ,
-                                        "Interval" : 1.000000000000000e-06 ,
+                                        "Minimum" : 2.095135927049010e-04 ,
+                                        "Maximum" : 2.437312154856462e-01 ,
+                                        "Interval" : 2.000000000000000e-02 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1036,9 +1061,9 @@
                             {
                                 "Name" : "Contact Plot" ,
                                 "Item" : {
-                                    "Active" : true ,
+                                    "Active" : false ,
                                     "Type" : 0 ,
-                                    "PIActive" : true ,
+                                    "PIActive" : false ,
                                     "ShowCaption" : true ,
                                     "Title" : {
                                         "Active" : true ,
@@ -1295,9 +1320,9 @@
                                         "Active" : true ,
                                         "Enabled" : true ,
                                         "Ramp" : 0 ,
-                                        "Minimum" : 2.106937358107512e-02 ,
-                                        "Maximum" : 2.489075051510056e+01 ,
-                                        "Interval" : 2.000000000000000e+00 ,
+                                        "Minimum" : 7.894763239760567e-02 ,
+                                        "Maximum" : 9.795663322341991e+02 ,
+                                        "Interval" : 5.000000000000000e+01 ,
                                         "MinAuto" : true ,
                                         "MaxAuto" : true ,
                                         "IntAuto" : true ,
@@ -1626,7 +1651,7 @@
                                         "UsesBool" : false ,
                                         "UsesScaleAuto" : true ,
                                         "Target" : 1.000000000000000e-02 ,
-                                        "Scale" : 4.020551387130855e-01 ,
+                                        "Scale" : 4.255131141190518e-01 ,
                                         "ScaleAuto" : true ,
                                         "Bool" : true 
                                     },
@@ -1903,18 +1928,18 @@
     ],
     "Terminal" : {
         "MoveLists" : true ,
-        "LineLimit" : 17 
+        "LineLimit" : 18 
     },
     "ColorMap" : {
         "EMaps" : [  ]
     },
     "Layout" : {
         "PaneAction" : [ 
+            "IPython Console  " ,
             "Project" ,
-            "Console" ,
-            "IPython Console  " 
+            "Console" 
         ],
-        "State" : "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" 
+        "State" : "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" 
     },
     "CPVisible" : true ,
     "PaneContents" : { }

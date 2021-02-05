@@ -34,9 +34,12 @@ it.command(f"""
 zone cmodel assign elastic
 zone property young [pbm_emod+lnm_emod] poisson 0.25
 zone property density [cm_densityVal]
-zone face group "boundary" range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {inner_radius}
-zone group "zboundary" range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {1.1*inner_radius}
-wall-zone create name 'dem_boundary' group 'zboundary'
+wall-zone create name 'dem_boundary' range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {inner_radius}
 
+zone gridpoint fix velocity-z range position-z {thickness/2.0}
+zone gridpoint fix velocity-z range position-z {-thickness/2.0}
+zone face apply quiet-normal range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {.99*outer_radius} not
+zone face apply velocity-strike 0 range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {.99*outer_radius} not
+zone face apply velocity-dip 0 range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {.99*outer_radius} not
 """)
 
