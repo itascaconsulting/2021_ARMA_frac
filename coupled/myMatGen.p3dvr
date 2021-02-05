@@ -1,0 +1,27 @@
+;fname: myMatGen.p3dvr
+;
+;  IN:  {mv, mp}Params.p3dat
+;  OUT: myMatGen.p3log
+;       Saved States (with corresponding model titles):
+;         <cm_matName>-{matV : specimen in material vessel
+;                       mat  : specimen removed from material vessel (if bonded material)
+;                      }
+;
+;=============================================================================
+
+;#######################################################
+model new
+MODEL LARGE-STRAIN on
+call "..\fistSrc\ft.fis" 
+call "mvParams.p3dat"    
+call "mpParams.p3dat"    
+
+@mvMake
+@mpMake( 0, [false] )
+@mvListProps
+@mpListMicroProps
+@mpListMicroStrucProps
+;#######################################################
+
+return
+;EOF: myMatGen.p3dvr
