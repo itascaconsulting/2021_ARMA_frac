@@ -34,3 +34,4 @@ for pmult in [2.0]:
         blast.run(run_time)
         blast.save()
         c += 1
+        coupled_load.show_cracks()

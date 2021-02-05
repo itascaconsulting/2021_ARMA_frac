@@ -48,8 +48,18 @@ class cube_blast(object):
         zone reflect origin 0 0 0 norm -1 0 0
         zone reflect origin 0 0 0 norm 0 -1 0
 
-        zone cmodel assign elastic
-        zone property young [pbm_emod+lnm_emod] poisson 0.25
+        ;zone cmodel assign mohr-coulomb-tension
+        ;zone property young [pbm_emod+lnm_emod] poisson 0.25 cohesion {it.fish.get("pbm_coh_m")} tension {it.fish.get("pbm_ten_m")} friction 50 dilation 0 number-cracks 1
+        
+        ;zone cmodel assign mohr-coulomb
+        ;zone property young [pbm_emod+lnm_emod] poisson 0.25 cohesion 1e100 tension 1e5 friction 50 dilation 0         
+        zone cmodel assign strain-softening        
+        table 'ConTen_C35' add 0.0000000 .75e6 ...
+        0.0000005 1.0000 ...
+        0.0000001 1.0000 ...
+        0.0002000 1.0000
+        zone property table-tension 'ConTen_C35' young [pbm_emod+lnm_emod] poisson 0.25 cohesion 1e100 friction 40 tension 0.75e6
+
         zone property density [cm_densityVal]
         wall-zone create name 'dem_boundary' range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {inner_radius}
 
