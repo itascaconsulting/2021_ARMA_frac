@@ -6,8 +6,8 @@ def mvSetParams
   mv_type  = 0
   mv_shape = 1
   mv_H = 0.05
-  mv_W = 0.25
-  mv_D = 0.25
+  mv_W = 0.5
+  mv_D = 0.5
   mv_emod = 3.0e9
   _mvCylRes = math.pi*2/100.0
 end

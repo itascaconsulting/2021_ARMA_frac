@@ -6,4 +6,4 @@ MODEL LARGE-STRAIN on
 
 
 call "coupled/myMatGen.p3dvr"
-;call "coupled_test.py"
+call "coupled_parameter_study.py"

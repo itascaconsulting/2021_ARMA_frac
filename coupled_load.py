@@ -27,7 +27,7 @@ class cube_blast(object):
 
         inner_radius = it.fish.get("mv_W")/2.0
         assert it.fish.get("mv_W") == it.fish.get("mv_D")
-        outer_radius = inner_radius*3
+        outer_radius = inner_radius*5
         thickness = it.fish.get("mv_H")
 
         it.command(f"""
@@ -42,23 +42,25 @@ class cube_blast(object):
           point 9 0                 {-inner_radius}  {-thickness/2.0} ...
           point 10 {inner_radius}    {0}              {thickness/2.0} ...
           point 11 0                 {-inner_radius}  {thickness/2.0} ...
-          size 15 4 15 ratio 1.1 1.1 1
+          size 25 4 25 ratio 1 1 1
 
 
         zone reflect origin 0 0 0 norm -1 0 0
         zone reflect origin 0 0 0 norm 0 -1 0
 
+        zone cmodel assign elastic
+        zone property young [pbm_emod+lnm_emod] poisson 0.25 
         ;zone cmodel assign mohr-coulomb-tension
         ;zone property young [pbm_emod+lnm_emod] poisson 0.25 cohesion {it.fish.get("pbm_coh_m")} tension {it.fish.get("pbm_ten_m")} friction 50 dilation 0 number-cracks 1
         
         ;zone cmodel assign mohr-coulomb
         ;zone property young [pbm_emod+lnm_emod] poisson 0.25 cohesion 1e100 tension 1e5 friction 50 dilation 0         
-        zone cmodel assign strain-softening        
-        table 'ConTen_C35' add 0.0000000 .75e6 ...
-        0.0000005 1.0000 ...
-        0.0000001 1.0000 ...
-        0.0002000 1.0000
-        zone property table-tension 'ConTen_C35' young [pbm_emod+lnm_emod] poisson 0.25 cohesion 1e100 friction 40 tension 0.75e6
+        ;zone cmodel assign strain-softening        
+        ;table 'ConTen_C35' add 0.0000000 .75e6 ...
+        ;0.0000005 1.0000 ...
+        ;0.0000001 1.0000 ...
+        ;0.0002000 1.0000
+        ;zone property table-tension 'ConTen_C35' young [pbm_emod+lnm_emod] poisson 0.25 cohesion 1e100 friction 40 tension 0.75e6
 
         zone property density [cm_densityVal]
         wall-zone create name 'dem_boundary' range cylinder end-1 0 0 {-thickness/2.0} end-2 0 0 {thickness/2.0} rad {inner_radius}
@@ -139,9 +141,9 @@ def broken_bonds():
     return blast.initial_bond_list - current_bonds
 
 
-def show_cracks():
+def show_cracks(geom_name):
     cracks = broken_bonds()
-    output = open("tmp.geom", "w")
+    output = open(geom_name, "w")
     print("ITASCA GEOMETRY3D", file=output)
     print("NODES ; id x y z EXTRA 1 value", file=output)
     for i, c in enumerate(cracks):
@@ -150,7 +152,7 @@ def show_cracks():
         print("{} {} {} {} EXTRA 1 0".format(i+1,*pos), file=output)
     output.close()
     it.command("geom delete")
-    it.command("geom import 'tmp.geom' format geometry")
+    it.command(f"geom import '{geom_name}' format geometry")
     return len(cracks)
 
 # singleton
